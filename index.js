@@ -53,7 +53,8 @@ function removeListener(event, handler) {
 		return false;
 	});
 
-	this._parent.removeListener(this._prefix + event, handler);
+	if (has_removed)
+		this._parent.removeListener(this._prefix + event, handler);
 
 	return this;
 }

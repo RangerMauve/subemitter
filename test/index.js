@@ -35,6 +35,13 @@ describe("SubEmitter", function () {
 			var listeners = parent.listeners(prefix + "event");
 			assert.lengthOf(listeners, 1, "one listener is left");
 		});
+
+		it("Should only remove listeners added via the SubEmitter", function () {
+			parent.on(prefix + "event", noop);
+			emitter.removeListener("event");
+			var listeners = parent.listeners(prefix + "event");
+			assert.lengthOf(listeners, 1, "the listener wasn't removed");
+		})
 	});
 
 	describe("#removeAllListeners()", function () {
